@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jotham Cuts – Your Viewers Stay. Your Channel Grows.</title>
+<meta name="description" content="Retention-focused video editing for long-form YouTube creators. I shape pacing, structure, and energy so your viewers stay watching — and come back.">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080d;--surface:#0b0d14;--surface2:#0f1118;
+  --accent:#6b8cff;--accent-dim:rgba(107,140,255,0.1);
+  --accent-glow:rgba(107,140,255,0.22);--accent-border:rgba(107,140,255,0.28);
+  --white:#f0eee8;--muted:#9a9cb2;--muted2:#4a4c5e;
+  --border:#141520;--border2:#1a1c26;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Mono',monospace;overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.4}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid var(--accent-border);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+.cursor.expand{width:16px;height:16px}
+.cursor-ring.expand{width:50px;height:50px;border-color:rgba(107,140,255,0.12)}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(7,8,13,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:58px}
+.nav-logo{font-family:'Unbounded';font-weight:900;font-size:13px;letter-spacing:.03em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px;cursor:none;text-transform:uppercase}
+.nav-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent-glow);animation:pulse 2.5s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 10px var(--accent-glow)}50%{opacity:.3;box-shadow:none}}
+.nav-links{display:flex;gap:40px}
+.nav-links a{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{font-family:'DM Mono';font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:var(--accent);color:var(--bg);padding:10px 22px;text-decoration:none;transition:all .2s;cursor:none}
+.nav-cta:hover{box-shadow:0 0 24px var(--accent-glow)}
+/* TICKER */
+.ticker{position:fixed;top:58px;left:0;right:0;z-index:499;height:22px;background:var(--bg);border-bottom:1px solid var(--border);overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;animation:tick 28s linear infinite;white-space:nowrap}
+.ticker-track span{font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted2);padding:0 24px}
+.ticker-track span.hi{color:var(--accent);opacity:.6}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:128px 60px}
+.s-label{font-size:8px;letter-spacing:.44em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:16px;opacity:.8}
+.s-label::before{content:'';width:20px;height:1px;background:var(--accent)}
+.s-title{font-family:'Unbounded';font-weight:800;font-size:clamp(28px,3.6vw,52px);line-height:.97;color:var(--white);margin-bottom:20px;letter-spacing:-.025em}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
+.reveal.in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+/* HERO */
+#hero{min-height:100vh;padding-top:136px;display:flex;align-items:center;position:relative;overflow:hidden}
+#hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(107,140,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(107,140,255,0.035) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 75% 65% at 68% 45%,black 20%,transparent 78%);pointer-events:none}
+.hero-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1200px;width:100%;position:relative;z-index:2}
+.hero-eyebrow{font-size:9px;letter-spacing:.38em;text-transform:uppercase;color:var(--muted);margin-bottom:30px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeUp .6s .1s forwards}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--muted)}
+.hero-h1{font-family:'Unbounded';font-weight:900;font-size:clamp(46px,6.8vw,100px);line-height:.92;letter-spacing:-.025em;opacity:0;animation:fadeUp .7s .25s forwards;margin-bottom:38px}
+.hero-h1 .acc{color:var(--accent)}
+.hero-h1 .out{-webkit-text-stroke:1.5px rgba(240,238,232,0.25);color:transparent}
+.hero-p{font-size:14px;line-height:2.1;color:var(--muted);max-width:440px;opacity:0;animation:fadeUp .7s .4s forwards;margin-bottom:48px}
+.hero-p strong{color:var(--white);font-weight:400}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .55s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--bg);font-family:'DM Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:all .2s;cursor:none}
+.btn-primary:hover{box-shadow:0 0 36px rgba(107,140,255,0.28);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--muted);font-family:'DM Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 24px;border:1px solid var(--border2);transition:all .2s;cursor:none}
+.btn-ghost:hover{color:var(--white);border-color:var(--muted)}
+.hero-right{display:flex;flex-direction:column;gap:10px;opacity:0;animation:fadeIn .8s .65s forwards}
+.h-intro{background:var(--surface);border:1px solid var(--border2);padding:36px 32px;position:relative}
+.h-intro::before{content:'WHO I AM';position:absolute;top:-8px;left:18px;background:var(--bg);padding:0 8px;font-size:7.5px;letter-spacing:.28em;color:var(--muted)}
+.h-intro p{font-size:14px;line-height:2;color:var(--muted)}
+.h-intro p strong{color:var(--white);font-weight:400}
+.h-outcomes{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.h-out{background:var(--surface);border:1px solid var(--border);padding:26px 24px;transition:border-color .25s,background .25s;position:relative;overflow:hidden}
+.h-out::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-dim),transparent);opacity:0;transition:opacity .3s}
+.h-out:hover{border-color:var(--accent-border)}
+.h-out:hover::after{opacity:1}
+.h-out-n{font-family:'Unbounded';font-weight:800;font-size:12px;line-height:1.4;color:var(--accent);text-transform:uppercase;letter-spacing:.01em;position:relative;z-index:1}
+.h-out-l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.7;position:relative;z-index:1}
+.h-avail{background:var(--surface);border:1px solid var(--border2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.h-avail-left{display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.h-avail-right{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2)}
+/* WORK */
+#work{padding:128px 60px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.work-card{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:none;background:var(--surface2)}
+.work-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease,filter .4s ease;filter:none}
+.work-card:hover .work-thumb-bg{transform:scale(1.04);filter:brightness(.22)}
+.work-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .3s}
+.work-card:hover .work-overlay{opacity:1}
+.play-ring{width:52px;height:52px;border:1.5px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .25s,box-shadow .25s}
+.work-card:hover .play-ring{transform:scale(1.08);box-shadow:0 0 28px rgba(107,140,255,0.22)}
+.play-ring::after{content:'';width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid var(--accent);margin-left:4px}
+.work-card-title{font-family:'Unbounded';font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--white);text-align:center}
+.work-card-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;opacity:.85}
+/* PROCESS */
+#process{padding:128px 60px}
+.process-intro{max-width:580px;margin-bottom:72px}
+.process-intro p{font-size:14px;line-height:2.1;color:var(--muted);margin-top:20px}
+.process-intro p strong{color:var(--white);font-weight:400}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.p-card{background:var(--surface);border:1px solid var(--border);padding:44px 36px;position:relative;overflow:hidden;transition:border-color .25s}
+.p-card:hover{border-color:var(--accent-border)}
+.p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s}
+.p-card:hover::before{opacity:1}
+.p-num{font-family:'Unbounded';font-weight:900;font-size:52px;color:var(--border2);line-height:1;margin-bottom:28px;letter-spacing:-.02em;transition:color .25s}
+.p-card:hover .p-num{color:var(--accent-border)}
+.p-title{font-family:'Unbounded';font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--white);margin-bottom:16px;line-height:1.3}
+.p-body{font-size:13px;line-height:2.1;color:var(--muted)}
+.p-body strong{color:var(--white);font-weight:400}
+/* ABOUT */
+#about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;max-width:1100px}
+.about-card{background:var(--bg);border:1px solid var(--border2);padding:48px;position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+.about-card::after{content:'JC';font-family:'Unbounded';font-weight:900;font-size:100px;color:var(--accent);opacity:.04;position:absolute;bottom:-8px;right:16px;line-height:1;pointer-events:none;letter-spacing:-.02em}
+.about-card-tag{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.about-card-name{font-family:'Unbounded';font-weight:900;font-size:34px;line-height:.97;color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
+.about-card-name em{color:var(--accent);font-style:normal}
+.about-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:30px}
+.pill{font-size:8px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border2);padding:7px 14px;color:var(--muted);transition:all .2s}
+.pill.on{border-color:var(--accent-border);color:var(--accent);opacity:.85}
+.about-body{font-size:14px;line-height:2.1;color:var(--muted)}
+.about-body strong{color:var(--white);font-weight:400}
+.about-body p+p{margin-top:24px}
+/* TESTIMONIALS */
+#testimonials{padding:128px 60px}
+.t-card{background:var(--surface);border:1px solid var(--border2);padding:44px;position:relative;max-width:620px;transition:border-color .25s}
+.t-card:hover{border-color:var(--accent-border)}
+.t-card::before{content:'"';font-family:'Georgia',serif;font-size:96px;color:var(--accent);opacity:.1;position:absolute;top:8px;left:20px;line-height:1}
+.t-text{font-size:14px;line-height:2.1;color:#c2c4d6;margin-bottom:28px;font-style:italic;position:relative;z-index:1}
+.t-author{display:flex;align-items:center;gap:14px}
+.t-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent-dim);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0}
+.t-name{font-family:'Unbounded';font-size:11px;font-weight:600;color:var(--white)}
+.t-handle{font-size:9px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+.t-handle a{color:var(--accent);text-decoration:none;opacity:.7}
+.t-note{font-size:13px;line-height:2;color:var(--muted);margin-top:32px;max-width:620px}
+.t-note strong{color:var(--white);font-weight:400}
+/* CONTACT */
+#contact{background:var(--surface);border-top:1px solid var(--border)}
+.contact-wrap{max-width:680px;margin:0 auto;text-align:center}
+.contact-sub{font-size:14px;line-height:2.1;color:var(--muted);margin-bottom:44px}
+.contact-sub strong{color:var(--white);font-weight:400}
+.btn-call{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--bg);font-family:'DM Mono';font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:22px 52px;text-decoration:none;transition:all .25s;cursor:none}
+.btn-call:hover{box-shadow:0 0 52px rgba(107,140,255,0.35);transform:translateY(-2px)}
+.contact-or{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted2);margin:22px 0}
+.contact-email-btn{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-family:'DM Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:13px 26px;border:1px solid var(--accent-border);text-decoration:none;transition:all .2s;cursor:none}
+.contact-email-btn:hover{background:var(--accent-dim)}
+.contact-note{font-size:11px;color:var(--muted);margin-top:24px;letter-spacing:.04em;line-height:1.8}
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:36px 60px 96px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Unbounded';font-weight:900;font-size:14px;letter-spacing:.03em;color:var(--white);text-transform:uppercase}
+.footer-logo em{color:var(--accent);font-style:normal}
+.footer-nav{display:flex;gap:28px}
+.footer-nav a{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
+.footer-nav a:hover{color:var(--white)}
+.footer-copy{width:100%;font-size:9px;color:var(--muted2);letter-spacing:.1em}
+.tl-bar{position:fixed;bottom:0;left:0;right:0;height:42px;background:var(--surface);border-top:1px solid var(--border);z-index:100;display:flex;align-items:center;padding:0 60px;gap:3px;overflow:hidden}
+.tl-b{height:16px;border-radius:2px;flex-shrink:0}
+.ph{position:fixed;bottom:0;width:2px;height:42px;background:var(--accent);z-index:101;animation:ph 14s linear infinite;box-shadow:0 0 14px rgba(107,140,255,0.45)}
+.ph::before{content:'';position:absolute;top:-5px;left:-4px;border:5px solid transparent;border-top-color:var(--accent)}
+@keyframes ph{0%{left:60px}100%{left:calc(100% - 60px)}}
+.tc{position:fixed;bottom:48px;left:60px;font-size:9px;letter-spacing:.12em;color:var(--muted);z-index:102;font-variant-numeric:tabular-nums}
+.tc em{color:var(--accent);font-style:normal;opacity:.7}
+.lb{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb.open{opacity:1;pointer-events:all}
+.lb-bg{position:absolute;inset:0;background:rgba(4,4,8,.96);backdrop-filter:blur(12px);cursor:none}
+.lb-box{position:relative;width:90vw;max-width:1000px;aspect-ratio:16/9;z-index:1;transform:scale(.94);transition:transform .3s}
+.lb.open .lb-box{transform:scale(1)}
+.lb-box iframe{width:100%;height:100%;border:none;display:block}
+.lb-close{position:absolute;top:-44px;right:0;width:36px;height:36px;background:transparent;border:1px solid var(--border2);color:var(--white);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;font-family:'DM Mono'}
+.lb-close:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+@media(hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none!important}body{cursor:auto}}
+@media(max-width:960px){
+  section,.nav,#contact,footer,.tl-bar,.tc{padding-left:28px;padding-right:28px}
+  .nav{padding:0 28px}.nav-links{display:none}
+  .hero-wrap,.about-grid{grid-template-columns:1fr}
+  .hero-right{flex-direction:column}.h-outcomes{grid-template-columns:1fr 1fr}
+  .about-grid{gap:40px}.work-grid,.process-grid{grid-template-columns:1fr 1fr}
+  .tl-bar,.ph,.tc{display:none}footer{padding-bottom:48px}
+}
+@media(max-width:580px){
+  .hero-stats{flex-direction:column}.work-grid,.process-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}.lb-box{width:96vw}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+<div class="lb" id="lb">
+  <div class="lb-bg" id="lbBg"></div>
+  <div class="lb-box">
+    <button class="lb-close" id="lbClose">&#10005;</button>
+    <iframe id="lbFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+<nav class="nav">
+  <a href="#hero" class="nav-logo"><div class="nav-dot"></div>Jotham Cuts</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="https://calendar.app.google/kxuGvignREdFnxSY9" target="_blank">Book a Free Call</a>
+</nav>
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Viewers Watch Longer</span><span class="hi">&#9670; Deep Dives That Hold</span>
+    <span>Personality Lands Harder</span><span class="hi">&#9670; Every Cut Earns Its Place</span>
+    <span>Your Audience Stays</span><span class="hi">&#9670; Built Around Your Viewers</span>
+    <span>No Templates. Ever.</span><span class="hi">&#9670; Long-Form Done Right</span>
+    <span>Viewers Watch Longer</span><span class="hi">&#9670; Deep Dives That Hold</span>
+    <span>Personality Lands Harder</span><span class="hi">&#9670; Every Cut Earns Its Place</span>
+    <span>Your Audience Stays</span><span class="hi">&#9670; Built Around Your Viewers</span>
+    <span>No Templates. Ever.</span><span class="hi">&#9670; Long-Form Done Right</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-wrap">
+    <div>
+      <p class="hero-eyebrow">Long-Form YouTube &nbsp;&#183;&nbsp; Retention Editing</p>
+      <h1 class="hero-h1">Your<br><span class="acc">Viewers</span><br><span class="out">Stay.</span></h1>
+      <p class="hero-p">
+        Most channels don't lose viewers because the content is bad.<br><br>
+        <strong>They lose them because the edit isn't holding the attention the content deserves.</strong> Pacing that drags, structure that loses momentum, visuals that don't signal trust — that's fixable. That's what I do.
+      </p>
+      <div class="hero-btns">
+        <a href="https://calendar.app.google/kxuGvignREdFnxSY9" target="_blank" class="btn-primary">Book a Free 15-Min Call &#8594;</a>
+        <a href="#work" class="btn-ghost">See the Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="h-intro">
+        <p>I'm <strong>Jotham</strong> — a retention-focused editor for <strong>long-form YouTube creators.</strong> Deep dives, commentary, personality content — if your format lives or dies by whether people watch till the end, I understand that problem. I don't just cut footage — I shape the <strong>pacing, structure, and energy</strong> that makes a viewer forget to check their phone.</p>
+      </div>
+      <div class="h-outcomes">
+        <div class="h-out">
+          <div class="h-out-n">Higher<br>Watch Time</div>
+          <div class="h-out-l">Every second earns<br>the next</div>
+        </div>
+        <div class="h-out">
+          <div class="h-out-n">Faster<br>Audience Trust</div>
+          <div class="h-out-l">Consistency viewers<br>can feel</div>
+        </div>
+        <div class="h-out">
+          <div class="h-out-n">No<br>Templates</div>
+          <div class="h-out-l">Built around your<br>channel, not a preset</div>
+        </div>
+        <div class="h-out">
+          <div class="h-out-n">Edits That<br>Compound</div>
+          <div class="h-out-l">Each video builds<br>on the last</div>
+        </div>
+      </div>
+      <div class="h-avail">
+        <div class="h-avail-left"><div class="nav-dot" style="box-shadow:0 0 10px rgba(107,140,255,0.4)"></div>Available for new clients</div>
+        <div class="h-avail-right">2 spots open</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="s-label reveal">Selected Work</div>
+  <h2 class="s-title reveal">The Edit Speaks<br>For Itself</h2>
+  <p class="reveal" style="font-size:14px;line-height:2;color:var(--muted);max-width:520px;margin-bottom:48px;margin-top:8px">Long-form edits built around one goal: keeping your viewers watching. <strong style="color:var(--white);font-weight:400">Click any to watch in full.</strong></p>
+  <div class="work-grid reveal">
+    <div class="work-card" data-vid="IDrAYhtI5fA">
+      <div class="work-thumb-bg" style="background-image:url('https://img.youtube.com/vi/IDrAYhtI5fA/maxresdefault.jpg')"></div>
+      <div class="work-overlay"><div class="play-ring"></div><div class="work-card-title">Watch Edit</div><div class="work-card-tag">Pacing &#183; Structure &#183; Long-Form</div></div>
+    </div>
+    <div class="work-card" data-vid="5zx72adncWQ">
+      <div class="work-thumb-bg" style="background-image:url('https://img.youtube.com/vi/5zx72adncWQ/maxresdefault.jpg')"></div>
+      <div class="work-overlay"><div class="play-ring"></div><div class="work-card-title">Watch Edit</div><div class="work-card-tag">Retention &#183; Visual Consistency</div></div>
+    </div>
+    <div class="work-card" data-vid="5_0aTRKR2pY">
+      <div class="work-thumb-bg" style="background-image:url('https://img.youtube.com/vi/5_0aTRKR2pY/maxresdefault.jpg')"></div>
+      <div class="work-overlay"><div class="play-ring"></div><div class="work-card-title">Watch Edit</div><div class="work-card-tag">Storytelling &#183; Audience Trust</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="process-intro reveal">
+    <div class="s-label">How It Works</div>
+    <h2 class="s-title">Three Things<br>That Actually Move<br>the Needle.</h2>
+    <p>Most editors start in the timeline. I start with your audience.<br><br><strong>What brings them to your video, what loses them midway, what makes them subscribe.</strong> Whether you make deep dives, commentary, or personality-driven content — the edit is built around that specific viewer, not a general template.</p>
+  </div>
+  <div class="process-grid reveal">
+    <div class="p-card">
+      <div class="p-num">01</div>
+      <div class="p-title">Understand Your<br>Audience First</div>
+      <div class="p-body">Before anything is cut, we map where your viewers come from, where they leave, and what makes them stay. <strong>Every edit decision — pacing, structure, transitions — is made with your specific audience in mind, not a general template.</strong></div>
+    </div>
+    <div class="p-card">
+      <div class="p-num">02</div>
+      <div class="p-title">Build a Channel<br>People Recognise</div>
+      <div class="p-body">A channel that looks and sounds consistent across every video builds trust before a word is spoken. <strong>Pacing, tone, visual language — all working together</strong> so returning viewers feel at home and new ones feel like they've found something worth subscribing to.</div>
+    </div>
+    <div class="p-card">
+      <div class="p-num">03</div>
+      <div class="p-title">Collaboration That<br>Doesn&#8217;t Create Work</div>
+      <div class="p-body">The best editor-creator relationship is one you barely notice. I ask the right questions upfront, communicate clearly throughout, and <strong>return edits that need minimal back-and-forth</strong> — so you spend your energy on making content, not managing production.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div>
+      <div class="about-card">
+        <div class="about-card-tag">DaVinci Resolve &nbsp;&#183;&nbsp; Long-Form YouTube &nbsp;&#183;&nbsp; Retention Editing</div>
+        <div class="about-card-name">Jotham<br><em>Cuts</em></div>
+        <div class="about-pills">
+          <span class="pill on">Retention &amp; Pacing</span>
+          <span class="pill on">Story Structure</span>
+          <span class="pill on">Visual Consistency</span>
+          <span class="pill on">DaVinci Resolve</span>
+          <span class="pill">Fairlight Audio</span>
+          <span class="pill">B-Roll</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="s-label">About</div>
+      <h2 class="s-title">Good Content<br>Deserves Better.</h2>
+      <div class="about-body">
+        <p>I'm Jotham. I got into editing because I kept watching genuinely compelling long-form content underperform — not because the ideas were weak, but because <strong>the edit wasn't doing the content justice.</strong> Viewers who should have stayed, left. Channels that deserved to grow, didn't.</p>
+        <p>That's the problem I focus on. <strong>Pacing that respects the viewer's time, structure that carries them through 10 or 20 minutes without them noticing, visuals that make your channel feel like something worth trusting.</strong></p>
+        <p>I work with a small number of creators at a time so every project gets genuine attention — <strong>not a checklist applied to your footage, but an edit built around your audience specifically.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="s-label reveal">Reviews</div>
+  <h2 class="s-title reveal">Heard From<br>a Creator.</h2>
+  <div class="reveal" style="margin-top:44px">
+    <div class="t-card">
+      <p class="t-text">&#8220;Jotham was easy to work with. He communicated clearly. He knows audience retention and pacing well. His edits improved video quality and helped grow channel views. He took feedback well, met all deadlines, and was reliable all the way.&#8221;</p>
+      <div class="t-author">
+        <div class="t-avatar">NL</div>
+        <div>
+          <div class="t-name">No Limits</div>
+          <div class="t-handle"><a href="https://www.youtube.com/@ihavenolimitation" target="_blank" rel="noopener">@ihavenolimitation</a></div>
+        </div>
+      </div>
+    </div>
+    <p class="t-note" style="margin-top:28px">Currently open to new collaborations. <strong>If your content is stronger than your current edit, that's exactly the gap I work in.</strong> First projects are priced to make saying yes easy.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:128px 60px">
+  <div class="contact-wrap reveal">
+    <div class="s-label" style="justify-content:center">Contact</div>
+    <h2 class="s-title" style="text-align:center">Let&#8217;s See If<br>We&#8217;re the Right Fit</h2>
+    <p class="contact-sub">
+      Tell me about your channel and your audience. <strong>I'll give you an honest read on whether I can move the needle</strong> — and exactly what that would look like. 15 minutes. No pitch. No pressure.
+    </p>
+    <a class="btn-call" href="https://calendar.app.google/kxuGvignREdFnxSY9" target="_blank">Book a Free 15-Min Call &#8594;</a>
+    <p class="contact-or">or</p>
+    <a class="contact-email-btn" id="mailBtn">Send an Email Instead</a>
+    <p class="contact-note">jothamcuts&#64;gmail.com &nbsp;&#183;&nbsp; Replies within 24 hours</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Jotham <em>Cuts</em></div>
+  <div class="footer-nav">
+    <a href="#work">Work</a><a href="#process">Process</a>
+    <a href="#about">About</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">&#169; 2026 Jotham Cuts &nbsp;&#183;&nbsp; Retention editing for long-form YouTube &nbsp;&#183;&nbsp; Shillong, India</div>
+</footer>
+<div class="tl-bar" id="tlBar"></div>
+<div class="ph"></div>
+<div class="tc">TC <em id="tcVal">00:00:00:00</em></div>
+<script>
+(function(){
+  var e='jothamcuts'+'@'+'gmail.com';
+  var s='Video%20Editing%20Inquiry%20%E2%80%93%20Jotham%20Cuts';
+  var b='Hey%20Jotham%2C%0A%0AI%20found%20your%20site%20and%20I%27m%20interested%20in%20working%20together.%0A%0AChannel%3A%20%5Byour%20YouTube%20link%5D%0AAudience%3A%20%5Bwho%20watches%20your%20content%5D%0AWhat%20isn%27t%20working%3A%20%5Bwhat%20your%20edit%20isn%27t%20doing%20for%20you%20right%20now%5D';
+  var h='mailto:'+e+'?subject='+s+'&body='+b;
+  var btn=document.getElementById('mailBtn');if(btn)btn.href=h;
+})();
+var cur=document.getElementById('cur'),curR=document.getElementById('curR');
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.work-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.classList.add('expand');curR.classList.add('expand');});
+    el.addEventListener('mouseleave',function(){cur.classList.remove('expand');curR.classList.remove('expand');});
+  });
+}
+var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+var lb=document.getElementById('lb'),lbFrame=document.getElementById('lbFrame');
+function openLb(vid){lbFrame.src='https://www.youtube.com/embed/'+vid+'?autoplay=1&rel=0&modestbranding=1';lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){lb.classList.remove('open');lbFrame.src='';document.body.style.overflow='';}
+document.querySelectorAll('.work-card').forEach(function(card){card.addEventListener('click',function(){var vid=card.getAttribute('data-vid');if(vid)openLb(vid);});});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+document.getElementById('lbBg').addEventListener('click',closeLb);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+var tlBar=document.getElementById('tlBar');
+var tlC=['#6b8cff','#3d5acc','#1a2a6e','#0f1840','#4a6aee','#8faaff','#2a3f99','#0a1230','#6b8cff','#1e2e70','#3a52bb','#6078dd'];
+var tlO=[0.7,0.4,0.25,0.15,0.55,0.8,0.3,0.12,0.65,0.2,0.45,0.6];
+var tlW=[28,12,44,8,18,58,6,32,22,50,10,36,16,48,14,24,54,9,40,20];
+for(var i=0;i<90;i++){var b=document.createElement('div');b.className='tl-b';b.style.width=tlW[i%tlW.length]+'px';b.style.background=tlC[i%tlC.length];b.style.opacity=tlO[i%tlO.length];tlBar.appendChild(b);}
+function updateTC(){var n=new Date();var p=function(v){return String(v).padStart(2,'0');};var f=String(Math.floor(n.getMilliseconds()/33.3)).padStart(2,'0');document.getElementById('tcVal').textContent=p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds())+':'+f;}
+setInterval(updateTC,33);
+</script>
+</body>
+</html>
